@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import wiki from 'wikipedia';
-import './GamePage.module.css';
 
 export default function GamePage() {
     const [articleData, setArticleData] = useState();
