@@ -16,7 +16,6 @@ export default function GamePage() {
                 console.log(page);
                 //Response of type @Page object
                 let summary = await page.html();
-                summary = summary.toString().replaceAll(/<p>/gi, '<p class="pleft">');
                 //console.log(summary);
                 setArticleData(summary);
                 //Response of type @wikiSummary - contains the intro and the main image
