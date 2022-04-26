@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import wiki from 'wikipedia';
 import './GamePage.module.css';
 
 export default function GamePage() {
-    const [data, setData] = useState();
-    const searchString = 'tree';
+    const [articleData, setArticleData] = useState();
+
+    const location = useLocation();
+    const incomingData = location.state;
+    console.log(incomingData);
 
     useEffect(() => {
         (async () => {
             try {
-                const page = await wiki.page('harry potter');
+                const page = await wiki.page(incomingData.startWord);
                 console.log(page);
                 //Response of type @Page object
                 let summary = await page.html();
                 summary = summary.toString().replaceAll(/<p>/gi, '<p class="pleft">');
-                console.log(summary);
-                setData(summary);
+                //console.log(summary);
+                setArticleData(summary);
                 //Response of type @wikiSummary - contains the intro and the main image
             } catch (error) {
                 console.log(error);
@@ -24,19 +28,13 @@ export default function GamePage() {
         })();
     }, []);
 
-    useEffect(() => {
-        if (data) {
-            console.log(data);
-        }
-    }, [data]);
-
     return (
         <main>
             <header className="articleHeader">
-                <h1 className="articleHeaderTitle">{searchString.toUpperCase()}</h1>
+                <h1 className="articleHeaderTitle">{incomingData.startWord.toUpperCase()}</h1>
             </header>
-            {data ? <section
-                dangerouslySetInnerHTML={{ __html: data }}
+            {articleData ? <section
+                dangerouslySetInnerHTML={{ __html: articleData }}
             /> : null}
         </main>
     )
