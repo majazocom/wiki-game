@@ -9,6 +9,18 @@ export default function GamePage() {
     const incomingData = location.state;
     console.log(incomingData);
 
+    let anchorArray = document.getElementsByTagName('a');
+    console.log(anchorArray);
+
+
+    useEffect(() =>{
+        if (anchorArray > 1) {
+            anchorArray.forEach(element => {
+                console.log(element);
+            });
+        }
+    }, [anchorArray])
+
     useEffect(() => {
         (async () => {
             try {
