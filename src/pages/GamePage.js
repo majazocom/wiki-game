@@ -4,6 +4,7 @@ import wiki from 'wikipedia';
 
 export default function GamePage() {
     const [articleData, setArticleData] = useState();
+    const [counter, setCounter] = useState(1);
 
     const location = useLocation();
     const incomingData = location.state;
