@@ -1,26 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import wiki from 'wikipedia';
+import Article from "../Components/Article";
 
 export default function GamePage() {
     const [articleData, setArticleData] = useState();
-    const [counter, setCounter] = useState(1);
+    const [clickCount, setClickCount] = useState(0);
 
     const location = useLocation();
     const incomingData = location.state;
     console.log(incomingData);
-
-    let anchorArray = document.getElementsByTagName('a');
-    console.log(anchorArray);
-
-
-    useEffect(() =>{
-        if (anchorArray > 1) {
-            anchorArray.forEach(element => {
-                console.log(element);
-            });
-        }
-    }, [anchorArray])
 
     useEffect(() => {
         (async () => {
@@ -40,13 +29,11 @@ export default function GamePage() {
     }, []);
 
     return (
-        <main>
+        <>
             <header className="articleHeader">
                 <h1 className="articleHeaderTitle">{incomingData.startWord.toUpperCase()}</h1>
             </header>
-            {articleData ? <section
-                dangerouslySetInnerHTML={{ __html: articleData }}
-            /> : null}
-        </main>
+            <Article articleData={articleData}/>
+        </>
     )
 }

@@ -11,6 +11,7 @@ import {
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import GameProgress from './pages/GameProgress';
+import ClickedLink from './pages/ClickedLink';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="game" element={<GamePage />} />
+        <Route path="wiki/*" element={<ClickedLink />} />
         <Route path="profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
         <Route path="gameprogress" element={<GameProgress />} />
